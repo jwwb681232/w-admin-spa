@@ -1,20 +1,20 @@
-import axios from '@/libs/api.request'
+import axios from 'axios'
 
-export const login = ({userName, password}) => {
+export const login = ({email, password}) => {
     const data = {
-        email:userName,
+        email:email,
         password:password
     }
-    return axios.request({
+    return axios({
         url:'http://w-api.test/index.php/api/managers/auth/login',
-        params:data,
+        data,
         method:'post',
         headers:{
-            'Content-Type':'application/x-www-form-urlencoded',
+            // 'Content-Type':'application/x-www-form-urlencoded',
             'Accept':'application/x.w-api.v1+json'
         }
-    });
-    
+    })
+
     /*const data = {
         userName,
         password

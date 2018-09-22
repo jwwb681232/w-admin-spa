@@ -8,8 +8,8 @@
             <Card icon="log-in" title="欢迎登录" :bordered="false">
                 <div class="form-con">
                     <Form ref="loginForm" :model="form" :rules="rules">
-                        <FormItem prop="userName">
-                            <Input v-model="form.userName" placeholder="请输入用户名">
+                        <FormItem prop="email">
+                            <Input v-model="form.email" placeholder="请输入用户名">
                             <span slot="prepend">
                                 <Icon :size="16" type="person"></Icon>
                             </span>
@@ -38,7 +38,7 @@
 
     export default {
         props: {
-            userNameRules: {
+            emailRules: {
                 type: Array,
                 default: () => {
                     return [{required: true, message: '账号不能为空', trigger: 'blur'}]
@@ -54,7 +54,7 @@
         data() {
             return {
                 form: {
-                    userName: 'wx497657341@qq.com',
+                    email: 'wx497657341@qq.com',
                     password: ''
                 }
             }
@@ -62,7 +62,7 @@
         computed: {
             rules() {
                 return {
-                    userName: this.userNameRules,
+                    email: this.emailRules,
                     password: this.passwordRules
                 }
             }
@@ -76,7 +76,7 @@
                 this.$refs.loginForm.validate((valid) => {
                     if (valid) {
                         /*this.$emit('on-success-valid', {
-                            userName: this.form.userName,
+                            email: this.form.email,
                             password: this.form.password
                         });*/
                         this.handleLogin(this.form)
@@ -104,8 +104,8 @@
                 'handleLogin',
                 'getUserInfo'
             ]),
-            handleSubmit({userName, password}) {
-                this.handleLogin({userName, password})
+            handleSubmit({email, password}) {
+                this.handleLogin({email, password})
                     .then(res => {
                         this.getUserInfo().then(res => {
                             this.$router.push({
