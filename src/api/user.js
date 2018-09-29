@@ -14,31 +14,26 @@ export const login = ({email, password}) => {
             'Accept':'application/x.w-api.v1+json'
         }
     })
-
-    /*const data = {
-        userName,
-        password
-    };
-    return axios.request({
-        url: 'login',
-        data,
-        method: 'post'
-    })*/
 };
 
 export const getUserInfo = (token) => {
-    return axios.request({
-        url: 'get_info',
-        params: {
-            token
-        },
-        method: 'get'
+    return axios({
+        url:'http://w-api.test/index.php/api/managers/auth/info',
+        method:'get',
+        headers:{
+            'Authorization':'bearer ' + token,
+            'Accept':'application/x.w-api.v1+json'
+        }
     })
 };
 
 export const logout = (token) => {
-    return axios.request({
-        url: 'logout',
-        method: 'post'
+    return axios({
+        url:'http://w-api.test/index.php/api/managers/auth/logout',
+        method:'post',
+        headers:{
+            'Authorization':'bearer ' + token,
+            'Accept':'application/x.w-api.v1+json'
+        }
     })
 };

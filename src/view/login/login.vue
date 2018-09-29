@@ -54,8 +54,8 @@
         data() {
             return {
                 form: {
-                    email: 'wx497657341@qq.com',
-                    password: ''
+                    email: 'admin@admin.com',
+                    password: '123456'
                 }
             }
         },
@@ -75,10 +75,6 @@
             handleSubmit() {
                 this.$refs.loginForm.validate((valid) => {
                     if (valid) {
-                        /*this.$emit('on-success-valid', {
-                            email: this.form.email,
-                            password: this.form.password
-                        });*/
                         this.handleLogin(this.form)
                             .then(res => {
                                 this.getUserInfo().then(res => {
