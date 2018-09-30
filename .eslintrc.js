@@ -18,6 +18,7 @@ module.exports = {
         'arrow-spacing':[0],
         'semi':[0],
         //注释
-        'spaced-comment':[0]
+        'spaced-comment':[0],
+        'key-spacing':[0]
     }
 }

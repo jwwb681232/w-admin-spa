@@ -18,7 +18,7 @@ export default {
   props: {
     userAvator: {
       type: String,
-      default: ''
+      default: 'https://en.gravatar.com/userimage/106881395/eff971afcae4c26619949a4bced4ce10.jpeg'
     }
   },
   methods: {
