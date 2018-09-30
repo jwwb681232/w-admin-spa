@@ -3,11 +3,14 @@ import {setToken, getToken} from '@/libs/util'
 
 export default {
     state: {
-        email: '',
+        //email: '',
         userId: '',
-        avatorImgPath: '',
+        //avatorImgPath: '',
         token: getToken(),
-        access: ''
+        //access: ''
+        roles: [],
+        permissions: [],
+        menus: []
     },
     mutations: {
         setAvator(state, avatorPath) {
@@ -19,12 +22,18 @@ export default {
         setEmail(state, email) {
             state.email = email
         },
-        setAccess(state, access) {
-            state.access = access
+        setRoles(state, role) {
+            state.roles = role
         },
         setToken(state, token) {
             state.token = token
             setToken(token)
+        },
+        setPermissions(state, permissions) {
+            state.permissions = permissions
+        },
+        setMenus(state, menus) {
+            state.menus = menus
         }
     },
     actions: {
@@ -46,7 +55,6 @@ export default {
             return new Promise((resolve, reject) => {
                 logout(state.token).then(() => {
                     commit('setToken', '')
-                    commit('setAccess', [])
                     resolve()
                 }).catch(err => {
                     reject(err)
@@ -61,11 +69,13 @@ export default {
         getUserInfo({state, commit}) {
             return new Promise((resolve, reject) => {
                 getUserInfo(state.token).then(res => {
-                    const data = res.data
-                    commit('setAvator', data.avator)
-                    commit('setEmail', data.email)
-                    commit('setUserId', data.user_id)
-                    commit('setAccess', data.access)
+                    const data = res.data.data
+                    console.log(data)
+                    commit('setEmail', data.info.email)
+                    commit('setUserId', data.info.id)
+                    commit('setRoles', data.roles)
+                    commit('setPermissions', data.permissions)
+                    commit('setMenus', data.menus)
                     resolve(data)
                 }).catch(err => {
                     reject(err)

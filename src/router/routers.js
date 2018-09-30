@@ -13,7 +13,6 @@ export default [
     {
         path: '/',
         name: 'index',
-        redirect: '/home',
         component: Main,
         meta: {
             hideInMenu: true,
@@ -23,11 +22,11 @@ export default [
             {
                 path: 'home',
                 name: 'home',
+                component: () => import('@/view/home'),
                 meta: {
                     hideInMenu: true,
                     notCache: true
                 },
-                component: () => import('@/view/single-page/home')
             }
         ]
     },
