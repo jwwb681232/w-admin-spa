@@ -9,6 +9,17 @@ Vue.use(Router)
 const router = new Router({
     routes
 })
+
+router.addRoutes([{
+    path: '/test',
+    name: 'test',
+    component: () => import('@/view/test'),
+    meta: {
+        hideInMenu: true,
+        notCache: true
+    }
+}])
+
 const LOCK_PAGE_NAME = 'lock_page'
 const LOGIN_PAGE_NAME = 'login'
 const IS_LOCKED = getLockStatus()
@@ -29,6 +40,7 @@ router.beforeEach((to, from, next) => {
             next({name: 'home'})
         } else {
             store.dispatch('getUserInfo').then(user => {
+                //发现此处可以从store中生成菜单
                 if (canTurnTo(to.name, user.access, routes)) {
                     next()
                 } else {
